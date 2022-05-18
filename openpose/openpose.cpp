@@ -59,68 +59,20 @@ void openpose::DoInference(std::vector<cv::Mat>& inputData,vector<float> &f1,vec
     int out2_size=mBatchSize*42*56*56;
     net_output.resize(out1_size);
     net_output2.resize(out2_size);
-//    f1.resize(out1_size);
-//    f2.resize(out2_size);
-//    mNet->CopyFromDeviceToHost(f1,1);
-//    mNet->CopyFromDeviceToHost(f2,2);
-    printf("ok1");
-    mNet->CopyFromDeviceToHost(net_output,1);
-    mNet->CopyFromDeviceToHost(net_output2,2);
-//    f1=net_output;
+    f1.resize(out1_size);
+    f2.resize(out2_size);
+    mNet->CopyFromDeviceToHost(f1,1);
+    mNet->CopyFromDeviceToHost(f2,2);
+//    printf("ok1");
+//    mNet->CopyFromDeviceToHost(net_output,1);
+//    mNet->CopyFromDeviceToHost(net_output2,2);
+////    f1=net_output;
 //    f2=net_output2;
 //    f1.insert(f1.begin(),net_output.begin(),net_output.end());
 //    f2.insert(f2.begin(),net_output2.begin(),net_output2.end());
-    memcpy(&f1,net_output.data(),out1_size* sizeof(float));
-    memcpy(&f2,net_output2.data(),out2_size* sizeof(float));
+//    memcpy(&f1,net_output.data(),out1_size* sizeof(float));
+//    memcpy(&f2,net_output2.data(),out2_size* sizeof(float));
 
-    printf("ok");
-//    mNet->CopyFromHostToDevice(inputData, 0);
-//    int numBlocks = (mInputSize/getElementSize(mInputDataType) + 512 - 1) / 512;
-//    Normalize<<<numBlocks, 512 , 0>>>((float*)mpInputGpu);
-//    mNet->Forward();
-//    std::vector<float> net_output;
-//    net_output.resize(78*60*80);
-//    mNet->CopyFromDeviceToHost(net_output,1);
-//    memcpy((void*)mpHeatMapCpu,(void*)(net_output.data()),mHeatMapSize);
-//
-//    if(mResizeScale > 1) {
-//        int widthSouce = mHeatMapDims.d[2];
-//        int heightSource = mHeatMapDims.d[1];
-//        int widthTarget = mResizeMapDims.d[2];
-//        int heightTarget = mResizeMapDims.d[1];
-//        const dim3 threadsPerBlock{16, 16, 1};
-//        const dim3 numBlocks{
-//                op::getNumberCudaBlocks(widthTarget, threadsPerBlock.x),
-//                op::getNumberCudaBlocks(heightTarget, threadsPerBlock.y),
-//                op::getNumberCudaBlocks(mResizeMapDims.d[0], threadsPerBlock.z)};
-//        op::resizeKernel<<<numBlocks, threadsPerBlock>>>((float*)mpResizeMapGpu,(float*)mpHeatMapGpu,widthSouce,heightSource,widthTarget,heightTarget);
-//        CUDA_CHECK(cudaMemcpy(mpResizeMapCpu, mpResizeMapGpu,mResizeMapSize,cudaMemcpyDeviceToHost));
-//    }
-//
-//    // pose nms
-//    std::array<int,4> targetSize2{mBatchSize,mNumPeaks,mMaxPerson,mPeaksVector};
-//    std::array<int,4> sourceSize2{mBatchSize,mResizeMapDims.d[0],mResizeMapDims.d[1],mResizeMapDims.d[2]};
-//    op::Point<float> offset = op::Point<float>(0.5,0.5);
-//    op::nmsGpu((float*)mpPeaksGpu, (int*)mpKernelGpu, (float*)mpResizeMapGpu, mThreshold, targetSize2, sourceSize2, offset);
-//    CUDA_CHECK(cudaMemcpyAsync(mpPeaksCpu, mpPeaksGpu, mPeaksSize, cudaMemcpyDeviceToHost,0));
-//
-//    // bodypart connect
-//    Array<float> poseKeypoints;
-//    Array<float> poseScores;
-//    op::Point<int> resizeMapSize = op::Point<int>(mResizeMapDims.d[2],mResizeMapDims.d[1]);
-//    op::connectBodyPartsCpu(poseKeypoints, poseScores, mpResizeMapCpu, mpPeaksCpu, op::PoseModel::BODY_25, resizeMapSize, mMaxPerson, mInterMinAboveThreshold, mInterThreshold,
-//                            mMinSubsetCnt, mMinSubsetScore, 1.f);
-//
-//    result.resize(poseKeypoints.getVolume());
-//    // std::cout << "number of person: " << poseKeypoints.getVolume()/75 << std::endl;
-//    for(int i = 0; i < poseKeypoints.getVolume(); i++) {
-//        if((i+1)%3 == 0) {
-//            result[i] = poseKeypoints[i];
-//        } else {
-//            result[i] = poseKeypoints[i] * (8/mResizeScale);
-//        }
-//
-//    }
 
 }
 
