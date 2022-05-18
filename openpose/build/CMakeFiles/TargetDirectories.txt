@@ -1,0 +1,4 @@
+/disk2/my_trt/my_version/pose/openpose/build/CMakeFiles/rebuild_cache.dir
+/disk2/my_trt/my_version/pose/openpose/build/CMakeFiles/edit_cache.dir
+/disk2/my_trt/my_version/pose/openpose/build/CMakeFiles/pose.dir
+/disk2/my_trt/my_version/pose/openpose/build/CMakeFiles/testopenpose.dir
