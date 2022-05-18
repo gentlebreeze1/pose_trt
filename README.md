@@ -1,1 +1,2 @@
-# pose_trt
+1 mytrt目录实现将原本的tensorrt封装成一个动态库，封装了将onnx转换成tensorrt所需要的engine，forward，数据在设备端拷贝功能。
+2openpose 实现了openpose的tensorrt 包括前处理和后处理
